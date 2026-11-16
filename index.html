@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173b2b" />
+    <meta name="description" content="Compare harvest selling choices with costs, timing, and uncertainty in view." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23173b2b'/%3E%3Cpath d='M46 15C27 16 15 25 16 41c1 8 7 11 14 8 13-5 17-19 16-34ZM17 49c7-12 14-18 25-26' fill='none' stroke='%23d9efaa' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Harvest Saathi — Your selling decision, made clearer</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Harvest Saathi home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M30.6 7.1C17.2 7.8 8.8 14.3 9.4 25.1c.4 5.5 4.9 7.7 9.7 5.5C28.5 26.4 31.1 16.9 30.6 7.1Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.3 31.3c4.1-7.1 9.1-12 17-17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </span>
+          <span class="brand-copy"><strong>Harvest Saathi</strong><small>SELL WITH CLARITY</small></span>
+        </a>
+        <div class="topbar-right">
+          <label class="speech-language"><span class="sr-only">Voice language</span><select id="speechLanguage" aria-label="Voice input language"><option value="en-IN">EN · Voice</option><option value="hi-IN">हिन्दी</option><option value="kn-IN">ಕನ್ನಡ</option></select></label>
+          <span class="prototype-pill" id="prototypePill"><span class="pulse-dot"></span> Prototype · Sample data</span>
+          <button class="icon-button" id="helpButton" type="button" aria-label="About this prototype" title="About this prototype">?</button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> HARVEST DECISION ASSISTANT</div>
+            <h1>Your harvest.<br /><em>Your call.</em></h1>
+            <p>Speak or enter your harvest. Saathi compares what may be left after mandi fees, transport, storage and spoilage—then prepares your next questions.</p>
+            <div class="hero-meta">
+              <span class="meta-item"><span class="meta-icon">◷</span> Takes about 2 minutes</span>
+              <span class="meta-item"><span class="meta-icon">◎</span> You stay in control</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="sun"></div><div class="field field-back"></div><div class="field field-mid"></div><div class="field field-front"></div>
+            <div class="art-caption"><span class="caption-pin">⌖</span><span>Compare the journey,<br /><strong>not just the price.</strong></span></div>
+          </div>
+        </section>
+
+        <div class="content-grid">
+          <section class="panel input-panel" aria-labelledby="harvestHeading">
+            <div class="panel-heading">
+              <div class="step-number">01</div>
+              <div><h2 id="harvestHeading">Tell us about your harvest</h2><p>Use a sample scenario or enter your own figures.</p></div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-label"><span>YOUR PRODUCE</span><span class="section-rule"></span></div>
+              <div class="form-row two-col">
+                <label class="field"><span>Crop</span><select id="crop"><option value="onion">Onion</option><option value="tomato">Tomato</option><option value="maize">Maize</option><option value="custom">Other / custom</option></select></label>
+                <label class="field"><span>Quantity to sell</span><span class="input-with-unit"><input id="quantity" type="number" min="1" max="100000" step="1" value="25" inputmode="decimal" /><span>quintals</span></span></label>
+              </div>
+              <label class="field field-spaced"><span>When do you need the money?</span><select id="cashNeed"><option value="today">Today</option><option value="7" selected>Within a week</option><option value="14">I can wait up to 2 weeks</option></select><small>This affects whether waiting is a realistic option for you.</small></label>
+            </div>
+
+            <div class="voice-card">
+              <div class="voice-card-heading"><span class="voice-wave" aria-hidden="true">◖))</span><div><strong>Tell Saathi in your words</strong><small>Try: “I have 25 quintals of onion.”</small></div></div>
+              <div class="voice-controls"><textarea id="voiceText" rows="2" placeholder="Speak or type your harvest details" aria-label="Describe your harvest"></textarea><button class="mic-button" id="listenButton" type="button" aria-label="Start voice input" title="Start voice input">🎙</button></div>
+              <div class="voice-card-footer"><span id="voiceStatus">Voice support varies; avoid speaking personal identifiers. Text works offline.</span><button id="useVoiceText" type="button">Use details</button></div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-label"><span>SELLING OPTIONS</span><span class="section-rule"></span></div>
+              <label class="field"><span>Nearby mandi / area</span><span class="input-with-prefix"><span class="prefix-icon">⌖</span><input id="area" type="text" value="Sample district" maxlength="48" /></span></label>
+              <div class="form-row two-col field-spaced">
+                <label class="field"><span>Local mandi price</span><span class="input-with-prefix"><span class="prefix">₹</span><input id="localPrice" type="number" min="0" step="10" value="1340" inputmode="decimal" /><span class="suffix">/q</span></span></label>
+                <label class="field"><span>Other mandi price</span><span class="input-with-prefix"><span class="prefix">₹</span><input id="otherPrice" type="number" min="0" step="10" value="1500" inputmode="decimal" /><span class="suffix">/q</span></span></label>
+              </div>
+              <div class="form-row two-col field-spaced">
+                <label class="field"><span>Nearby mandi travel cost</span><span class="input-with-prefix"><span class="prefix">₹</span><input id="travelCost" type="number" min="0" step="10" value="140" inputmode="decimal" /><span class="suffix">/q</span></span></label>
+                <label class="field"><span>Mandi fee / commission</span><span class="input-with-unit"><input id="commission" type="number" min="0" max="25" step="0.5" value="2.5" inputmode="decimal" /><span>% of sale</span></span></label>
+              </div>
+              <div class="csv-import-row"><div><strong>Mandi price evidence</strong><small>Use daily wholesale references, then confirm a firm local offer.</small></div><button class="csv-button" id="fetchLivePrices" type="button">Fetch official rows</button><label class="csv-button" for="marketCsv">Import CSV</label><input id="marketCsv" type="file" accept=".csv,text/csv" hidden /></div>
+              <div class="import-status" id="importStatus" aria-live="polite" hidden></div>
+            </div>
+
+            <div class="form-section storage-section">
+              <div class="section-label"><span>IF YOU STORE</span><span class="section-rule"></span><span class="optional-tag">OPTIONAL</span></div>
+              <div class="form-row two-col">
+                <label class="field"><span>Storage cost</span><span class="input-with-prefix"><span class="prefix">₹</span><input id="storageCost" type="number" min="0" step="10" value="50" inputmode="decimal" /><span class="suffix">/q /week</span></span></label>
+                <label class="field"><span>Possible sale price range</span><span class="range-fields"><span class="input-with-prefix"><span class="prefix">₹</span><input id="futureLow" type="number" min="0" step="10" value="1480" inputmode="decimal" aria-label="Lower possible sale price" /></span><span class="range-dash">–</span><span class="input-with-prefix"><span class="prefix">₹</span><input id="futureHigh" type="number" min="0" step="10" value="1680" inputmode="decimal" aria-label="Higher possible sale price" /></span></span><small>per quintal · your scenario, not a forecast</small></label>
+              </div>
+              <div class="form-row two-col field-spaced">
+                <label class="field"><span>Time in storage</span><select id="waitDays"><option value="7" selected>1 week</option><option value="14">2 weeks</option></select></label>
+                <label class="field"><span>Estimated spoilage / weight loss</span><span class="input-with-unit"><input id="spoilage" type="number" min="0" max="100" step="1" value="4" inputmode="decimal" /><span>% of produce</span></span></label>
+              </div>
+              <p class="assumption-note"><span class="note-mark">i</span> Use your own local quote and experience here. The app does not predict future prices or crop spoilage.</p>
+            </div>
+
+            <div class="input-footer"><span class="secure-mark">◇</span><span>No account needed. Save only when you choose.</span><button class="save-case-button" id="saveCaseButton" type="button">Save case on this device</button><button class="resume-case-button" id="resumeCaseButton" type="button" hidden>Resume saved case</button><button class="reset-button" id="resetButton" type="button">Reset example</button></div>
+          </section>
+
+          <section class="results-column" aria-labelledby="optionsHeading">
+            <div class="results-heading">
+              <div class="panel-heading result-title">
+                <div class="step-number">02</div>
+                <div><h2 id="optionsHeading">Compare your options</h2><p>Estimated take-home after the costs shown.</p></div>
+              </div>
+              <button class="compare-button" id="compareButton" type="button"><span>✦</span> Run Saathi</button>
+            </div>
+
+            <div class="data-banner" id="dataBanner" role="status"><span class="banner-icon">!</span><div><strong>Illustrative demo figures</strong><span class="data-copy">Not live mandi rates. Replace with verified local prices and costs.</span></div><button type="button" id="dataInfo" class="banner-info" aria-label="About sample data">i</button></div>
+
+            <div class="decision-summary" id="decisionSummary" aria-live="polite">
+              <div class="summary-top"><span class="summary-kicker">BEST ESTIMATE FROM THESE INPUTS</span><span class="summary-tag"><span class="small-dot"></span> Your choice</span></div>
+              <div class="summary-main"><div><div class="summary-label" id="bestTitle">Comparing your choices…</div><div class="summary-amount" id="bestAmount">₹—</div></div><div class="summary-icon" aria-hidden="true">↗</div></div>
+              <div class="summary-explain" id="bestExplain">Change the assumptions to see how the options move.</div>
+              <div class="summary-foot"><span>Based only on the figures you entered</span><span class="freshness" id="freshness">Sample · just now</span></div>
+            </div>
+
+            <div class="option-list" id="optionList" aria-live="polite"></div>
+
+            <section class="agent-trace" aria-labelledby="agentHeading">
+              <div class="agent-trace-heading"><span class="agent-spark">✦</span><div><span class="next-step-kicker">SAATHI AGENT · DECISION TRACE</span><h3 id="agentHeading">A plan you can inspect</h3></div><span class="simulated-chip">SIMULATED TOOLS</span></div>
+              <p class="agent-goal" id="agentGoal">Goal: compare take-home proceeds while meeting your cash deadline.</p>
+              <p class="agent-response" id="agentResponse" aria-live="polite">Run the plan to see which tools the agent used and why it chose the next check.</p>
+              <ol class="agent-steps" id="agentSteps"><li><span class="agent-step-icon">1</span><span><strong>Understand the harvest</strong><small>Crop, quantity and cash deadline</small></span><b>Ready</b></li><li><span class="agent-step-icon">2</span><span><strong>Check price inputs</strong><small>Manual values or imported market data</small></span><b>Ready</b></li><li><span class="agent-step-icon">3</span><span><strong>Compare net outcomes</strong><small>Fees, travel, storage and spoilage</small></span><b>Ready</b></li><li><span class="agent-step-icon">4</span><span><strong>Prepare a human-approved next step</strong><small>No buyer or warehouse is contacted</small></span><b>Waiting</b></li></ol>
+              <button class="approval-button" id="prepareRequests" type="button">Review simulated quote request <span>→</span></button>
+            </section>
+
+            <section class="next-step-card" aria-labelledby="nextStepHeading">
+              <div class="next-step-top"><span class="next-step-icon">↗</span><div><span class="next-step-kicker">YOUR NEXT STEP</span><h3 id="nextStepHeading">Check before you travel</h3></div></div>
+              <p id="nextStepCopy">A higher mandi price can be offset by transport, fees or quality deductions. Confirm the final net offer first.</p>
+              <div class="call-script" id="callScript"><span class="script-label">ASK THE BUYER</span><p id="scriptText">“I have 25 quintals of onion. What is your price for this grade today? Are there any deductions, loading charges or payment delays?”</p><button type="button" id="copyScript" class="copy-button">Copy question <span>⧉</span></button></div>
+            </section>
+
+            <div class="control-note"><span class="control-icon">✳</span><span><strong>You make the decision.</strong> This prototype compares scenarios; it does not sell, book storage or contact a buyer for you.</span></div>
+          </section>
+        </div>
+
+        <section class="how-section">
+          <div class="how-heading"><span class="eyebrow"><span class="eyebrow-line"></span> SIMPLE, TRANSPARENT, YOURS</span><h2>Know what goes into<br /><em>the number.</em></h2></div>
+          <div class="how-steps"><article><span class="how-number">01</span><h3>Start with a price</h3><p>Use a verified mandi rate or the offer you were quoted.</p></article><article><span class="how-number">02</span><h3>Subtract the journey</h3><p>Include transport, fees, storage and expected produce loss.</p></article><article><span class="how-number">03</span><h3>Choose with context</h3><p>See trade-offs and uncertainty. You decide what works for your family.</p></article></div>
+        </section>
+      </main>
+
+      <footer class="footer"><a class="footer-brand" href="#top">Harvest Saathi</a><span>Prototype for Tech4Bharat · Built for decisions, not promises</span><button id="footerAbout" type="button">About the demo</button></footer>
+    </div>
+
+    <dialog id="aboutDialog" class="about-dialog">
+      <div class="dialog-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> ABOUT THIS PROTOTYPE</span><h2>A clearer harvest decision.</h2></div><button id="closeDialog" class="icon-button" type="button" aria-label="Close">×</button></div>
+      <p>Harvest Saathi explores Tech4Bharat problem statement 6.1: farmers selling at the wrong time, place and price. It compares simple net-proceeds scenarios using the values entered on this page.</p>
+      <div class="dialog-callout"><strong>What this demo does not do</strong><span>It does not fetch live prices, forecast prices, verify local costs, or make a sale. Prefilled figures are illustrative; an imported CSV is not independently verified. Confirm real offers and costs locally.</span></div>
+      <p class="dialog-small">The future-price range and spoilage estimate are user-entered assumptions. They are shown as scenarios, not predictions.</p>
+      <button id="dialogDone" class="primary-button" type="button">Got it</button>
+    </dialog>
+    <dialog id="approvalDialog" class="about-dialog approval-dialog">
+      <div class="dialog-head"><div><span class="eyebrow"><span class="eyebrow-line"></span> HUMAN APPROVAL REQUIRED</span><h2>Review the quote request</h2></div><button id="closeApproval" class="icon-button" type="button" aria-label="Close">×</button></div>
+      <p id="requestPreview">Prepare a question to ask a local buyer about price, deductions and payment.</p>
+      <div class="dialog-callout"><strong>Simulated integration</strong><span>This prototype will prepare a draft on this device only. It will not send a message, contact a buyer, book transport or create a sale.</span></div>
+      <label class="approval-consent"><input id="approveDraft" type="checkbox" /> I reviewed this draft and approve preparing it locally.</label>
+      <button id="confirmDraft" class="primary-button" type="button" disabled>Prepare draft</button>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
+    <script>if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./service-worker.js').catch(() => {});</script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "Harvest Saathi",
+  "short_name": "Harvest Saathi",
+  "description": "Compare harvest selling choices with costs, timing, and uncertainty in view.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f7f0",
+  "theme_color": "#173b2b",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
